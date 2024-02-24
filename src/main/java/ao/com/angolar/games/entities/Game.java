@@ -18,6 +18,8 @@ public class Game {
     private String genre;
     private String platforms;
     private Double score;
+
+    @Column(name = "img_url")
     private String imgUrl;
 
     @Column(columnDefinition = "TEXT")

@@ -1,6 +1,7 @@
 package ao.com.angolar.games.service;
 
 import ao.com.angolar.games.Dto.GameDTO;
+import ao.com.angolar.games.Dto.GameMinDTO;
 import ao.com.angolar.games.entities.Game;
 import ao.com.angolar.games.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,17 @@ public class GameService {
     @Autowired
     private GameRepository gameRepository;
 
-    public List<GameDTO> findAll() {
+    public List<GameMinDTO> findAll() {
 
         List<Game> game = gameRepository.findAll();
-        List<GameDTO> dto = game.stream().map(x -> new GameDTO(x)).toList();
+        List<GameMinDTO> dto = game.stream().map(x -> new GameMinDTO(x)).toList();
+        return dto;
+    }
+
+    public GameDTO findById(Long id_game) {
+
+        Game game = gameRepository.findById(id_game).get();
+        GameDTO dto = new GameDTO(game);
         return dto;
     }
 }
